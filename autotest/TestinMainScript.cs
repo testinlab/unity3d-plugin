@@ -43,7 +43,7 @@ public class TestinMainScript : MonoBehaviour {
 		};
 		XElement sceneElement = new XElement ("CureentScene", sceneAtts);
 		
-		//获取当前场景里的所有游戏对象
+		//Get all game objects in the current scene
 		GameObject[] allObjects = (GameObject[])UnityEngine.Object.FindObjectsOfType(typeof(GameObject));
 
 		foreach (GameObject go in allObjects)
