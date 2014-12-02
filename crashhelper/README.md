@@ -28,7 +28,7 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Android_Scripts/* —> Assets/Plugins/
 ## 初化始TestinAgent
 -----------
 在Unity3D-plugin/crashhelper/Plugins/Testin_Android_Scripts/TestinInit.cs文件中修改Appkey；  
-TestinAndroid.Init (TestinAppKey); //TestinAppKey换成你程序的Appkey
+        TestinAndroid.Init (TestinAppKey); //TestinAppKey换成你程序的Appkey
 
 
 ## 处理收集的异常
@@ -41,5 +41,5 @@ TestinAndroid.Init (TestinAppKey); //TestinAppKey换成你程序的Appkey
 		
 ## 设置用户信息
 -----------
-TestinAndroid.SetUserInfo("userInfo");
+        TestinAndroid.SetUserInfo("userInfo");
 
