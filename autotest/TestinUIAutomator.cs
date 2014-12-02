@@ -16,6 +16,7 @@ using UnityEngine;
 
 public class TestinUIAutomator
 {
+	public const string TESTIN_AUTOTEST_PLUGIN_VERSION = "1.0";
 	const int TESTIN_UIAUTOMATOR_PORT = 9464;
 	const int TESTIN_UIAUTOMATOR_PORT_RANGE = 8;
 	const string TESTIN_STATUSLINE_OK = "HTTP/1.1 200 OK\r\n";

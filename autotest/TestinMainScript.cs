@@ -31,9 +31,10 @@ public class TestinMainScript : MonoBehaviour {
 		XAttribute[] rootAtts = {
 			new XAttribute("screen", UnityEngine.Screen.width + "x" + UnityEngine.Screen.height),
 			new XAttribute("support", Application.platform),
-			new XAttribute("version", ""),
-			new XAttribute("unityVersionCode", ""),
-			new XAttribute("unityVersion", UnityEngine.Application.unityVersion),
+			new XAttribute("EngineName", "Unity3D"),
+			new XAttribute("version", TestinUIAutomator.TESTIN_AUTOTEST_PLUGIN_VERSION),
+			new XAttribute("EngineVersionCode", ""),
+			new XAttribute("EngineVersionName", UnityEngine.Application.unityVersion),
 			new XAttribute("pid", Process.GetCurrentProcess ().Id)
 		};
 		XElement rootElement = new XElement("hierarchy", rootAtts);
@@ -99,9 +100,9 @@ public class TestinMainScript : MonoBehaviour {
 		{
 			enabled = true;
 			bounds = "[" + pos.x + ", "
-				+ pos.y + "]["
-				+ (pos.x + collider.size.x) + ", "
-				+ (pos.y + collider.size.y) + "]";
+				+ (UnityEngine.Screen.height - collider.size.y - pos.y) + "]["
+				+ (pos.x + collider.size.x) + ","
+				+ (UnityEngine.Screen.height - pos.y) + "]";
 		}
 
 		XAttribute[] nodeAtts = {
