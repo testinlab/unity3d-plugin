@@ -16,13 +16,14 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Android_Scripts/* —> Assets/Plugins/
 
 ## 修改工程的AndroidManifest文件
 -----------
->确保{Unity Project}/Plugins/Android目录中存在AndroidManifiest.xml文件。在该文件中，你需要确认添加网络等权限在<manifest> ... </manifest>标签中，如下：  
-<uses-permission android:name="android.permission.INTERNET"/>  
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
-<uses-permission android:name="android.permission.READ_PHONE_STATE"/>  
-<uses-permission android:name="android.permission.READ_LOGS"/>  
-<uses-permission android:name="android.permission.GET_TASKS"/>
+确保{Unity Project}/Plugins/Android目录中存在AndroidManifiest.xml文件。  
+        在该文件中，你需要确认添加网络等权限在<manifest> ... </manifest>标签中，如下：  
+        <uses-permission android:name="android.permission.INTERNET"/>  
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
+        <uses-permission android:name="android.permission.READ_PHONE_STATE"/>  
+        <uses-permission android:name="android.permission.READ_LOGS"/>  
+        <uses-permission android:name="android.permission.GET_TASKS"/>
 
 ## 初化始TestinAgent
 -----------
