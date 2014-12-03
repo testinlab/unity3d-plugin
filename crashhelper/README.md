@@ -5,41 +5,37 @@
 
 注意：在使用本插件前，须确保Testin的崩溃分析SDK已加入到工程中。
 
-要求的崩溃分析SDK版本：Android/iOS 1.7
+要求的崩溃分析SDK版本：[Android/iOS](http://crash.testin.cn/help/doc/13) 
 
 
 ## 添加SDK到你的工程
 -----------
-复制以下文件到相应的目录中：  
-Unity3D-plugin/crashhelper/Plugins/Android/* —> Assets/Plugins/Android/  
-Unity3D-plugin/crashhelper/Plugins/Testin_Android_Scripts/* —> Assets/Plugins/Testin_Android_Scripts/
-
-## 修改工程的AndroidManifest文件
------------
-确保{Unity Project}/Plugins/Android目录中存在AndroidManifiest.xml文件。  
-        在该文件中，你需要确认添加网络等权限在&lt;manifest> ... &lt;/manifest>标签中，如下：  
-        &lt;uses-permission android:name="android.permission.INTERNET"/>  
-        &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
-        &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
-        &lt;uses-permission android:name="android.permission.READ_PHONE_STATE"/>  
-        &lt;uses-permission android:name="android.permission.READ_LOGS"/>  
-        &lt;uses-permission android:name="android.permission.GET_TASKS"/>
+复制以下文件到相应的目录中：   
+Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_Plugins/
 
 ## 初化始TestinAgent
 -----------
-在Unity3D-plugin/crashhelper/Plugins/Testin_Android_Scripts/TestinInit.cs文件中修改Appkey；  
-        TestinAndroid.Init (TestinAppKey); //TestinAppKey换成你程序的Appkey
+方法一：  
+在/Assets/Plugins/Testin_Plugins/TestinInit.cs文件中修改TestinAppKey和TestinChannel，然后将TestinInit脚本绑定到任意一个GameObject上；  
+方法二：  
+在任意脚本里面添加初始化代码：
+        TestinCrashHelper.Init (TestinAppKey, TestinChannel);//TestinAppKey为你应用的appKey，TestinChannel为渠道号。
 
+注意：只有在TestinCrashHelper成功初始化之后，Unity中发生异常，SDK才能成功捕获，对于初始化之前发生的异常不能捕获。因此，建议程序启动后，尽可能提前初始化TestinCrashHelper。
 
 ## 处理收集的异常
 -----------
+开发者可以自己捕获异常然后进行上报。  
+示例代码如下：  
         try {  
                 throw new System.Exception();  
         } catch (System.Exception error) {  
-                TestinAndroid.LogHandledException(error);  
+                TestinCrashHelper.LogHandledException(error);  
         }
 		
 ## 设置用户信息
 -----------
-        TestinAndroid.SetUserInfo("userInfo");
+开发者可以设置用户信息。  
+示例代码如下：  
+        TestinCrashHelper.SetUserInfo("userInfo");
 

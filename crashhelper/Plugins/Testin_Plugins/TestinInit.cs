@@ -11,10 +11,12 @@ public class TestinInit : MonoBehaviour {
 	/// </summary>
 	/// <example>A real Appkey looks like this:  ec0cd05fb39700ba42a43eca799e7528</example>
 	private const string TestinAppKey = "ec0cd05fb39700ba42a43eca799e7528";
+//	private const string TestinAppKey = "57728b4e79251aed9d48009c83fcbc0c";
+	private const string TestinChannel = "Test";
 	
 	void Awake ()
 	{
-		TestinAndroid.Init (TestinAppKey);
+		TestinCrashHelper.Init (TestinAppKey, TestinChannel);
 		Destroy (this);
 	}
 }
