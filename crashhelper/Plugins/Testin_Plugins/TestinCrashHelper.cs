@@ -44,73 +44,22 @@ public static class TestinCrashHelper
 
 	#elif UNITY_IPHONE 
 	[DllImport("__Internal")]
-	private static extern void init (string appId, string channel);
+	private static extern void testinInit (string appId, string channel);
 	
 	[DllImport("__Internal")]
-	private static extern void setUserInfo (string userInfo);
+	private static extern void testinSetUserInfo (string userInfo);
 	
 	[DllImport("__Internal")]
-	private static extern void setChannel (string channel);
+	private static extern void testinSetChannel (string channel);
 	
 	[DllImport("__Internal")]
-	private static extern void reportCustomizedException (int type, string reason, string stackTrace);
-	
-	// strucure DLL
-	[DllImport("libc")]
-	private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
-	
-	//SIGILL , SIGINT , SIGTERM
-	enum Signal 
-	{ 
-		SIGABRT = 6, 
-		SIGFPE = 8, 
-		SIGBUS = 10, 
-		SIGSEGV = 11, 
-		SIGPIPE = 13
-	} 
+	private static extern void testinReportCustomizedException (int type, string reason, string stackTrace);
 
 	private static void InitTestinAgent (string appkey, string channel)
 	{
 		System.Console.Write ("InitForIos");
 		try {
-			int ptrSize;
-			
-			// sizeof(struct sigaction) from <signal.h>
-			if(IntPtr.Size == 4) 
-			{
-				ptrSize = 12; // 32-bit
-			}
-			// sizeof(struct sigaction) from <signal.h>
-			else 
-			{
-				ptrSize = 16; // 64-bit
-			}
-			
-			IntPtr sigabrt = Marshal.AllocHGlobal (ptrSize);
-			IntPtr sigfpe = Marshal.AllocHGlobal (ptrSize);
-			IntPtr sigbus = Marshal.AllocHGlobal (ptrSize);
-			IntPtr sigsegv = Marshal.AllocHGlobal (ptrSize);
-			
-			// Store Mono SIGSEGV and SIGBUS handlers
-			sigaction (Signal.SIGABRT, IntPtr.Zero, sigabrt);
-			sigaction (Signal.SIGFPE, IntPtr.Zero, sigfpe);
-			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
-			sigaction (Signal.SIGSEGV,IntPtr.Zero, sigsegv);
-			
-			init (appkey, channel);
-			
-			// Restore or Destroy the handlers
-			sigaction (Signal.SIGABRT, sigabrt, IntPtr.Zero);  		//RESTORE
-			sigaction (Signal.SIGFPE, sigfpe, IntPtr.Zero);  		//RESTORE
-			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);			//RESTORE
-			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);		//RESTORE
-			
-			//Free sig structs
-			Marshal.FreeHGlobal (sigabrt);
-			Marshal.FreeHGlobal (sigfpe);
-			Marshal.FreeHGlobal (sigbus);
-			Marshal.FreeHGlobal (sigsegv);
-			
+			testinInit (appkey, channel);
 			isInitialized = true;
 		} catch {
 			System.Console.Write ("TestinAgent failed to initialize.");
@@ -122,7 +71,7 @@ public static class TestinCrashHelper
 		if (!isInitialized) {
 			return;
 		}
-		setUserInfo (userInfo);
+		testinSetUserInfo (userInfo);
 	}
 
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
@@ -136,7 +85,7 @@ public static class TestinCrashHelper
 		}
 		
 		try {
-			reportCustomizedException (TESTIN_CRASH_TYPE, name, stack);
+			testinReportCustomizedException (TESTIN_CRASH_TYPE, name, stack);
 		} catch (System.Exception e) {
 			System.Console.Write ("Unable to log a crash exception to TestinAgent to an unexpected error: " + e.ToString ());
 		}
@@ -144,7 +93,7 @@ public static class TestinCrashHelper
 
 	private static void reportException(int type, string name, string message)
 	{
-		reportCustomizedException (type, name, message);
+		testinReportCustomizedException (type, name, message);
 	}
 
 	#elif UNITY_ANDROID 
