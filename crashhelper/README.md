@@ -5,7 +5,7 @@
 
 **注意：在使用本插件前，须确保Testin的崩溃分析SDK已加入到工程中。**
 
-**要求的崩溃分析SDK版本：[Android/iOS](http://crash.testin.cn/help/doc/13) **
+**要求的崩溃分析SDK版本：[Android/iOS](http://crash.testin.cn/help/doc/13)**
 
 
 ## 添加SDK到你的工程
@@ -27,7 +27,9 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 -----------
 开发者可以自己捕获异常然后进行上报。  
 方法：  
-        LogHandledException(Exception error);
+        
+        LogHandledException(Exception error);  
+
 示例代码如下：  
         
         try {  
@@ -38,9 +40,11 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 		
 ## 设置用户信息
 -----------
-开发者可以设置用户信息。 
+开发者可以设置用户信息。  
 方法：  
-        SetUserInfo(string userInfo);
+        
+        SetUserInfo(string userInfo);  
+
 示例代码如下：  
         
         TestinCrashHelper.SetUserInfo("userInfo");
