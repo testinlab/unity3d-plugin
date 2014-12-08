@@ -5,7 +5,7 @@
 
 **注意：在使用本插件前，须确保Testin的崩溃分析SDK已加入到工程中。**
 
-**要求的崩溃分析SDK版本：[Android/iOS](http://crash.testin.cn/help/doc/13)**
+**要求的崩溃分析SDK版本：Android/iOS 1.7及以上版本**
 
 
 ## 添加SDK到你的工程
