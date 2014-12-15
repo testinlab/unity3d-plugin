@@ -122,9 +122,9 @@ public static class TestinCrashHelper
 		}
 		
 		
-		mTestinPlugin_ANDROID.CallStatic ("onResume", objActivity);
+		mTestinPlugin_ANDROID.CallStatic ("onStart", objActivity);
 		
-		System.Console.Write ("onResume");
+		System.Console.Write ("onStart");
 		
 		isInitialized = true;
 		
