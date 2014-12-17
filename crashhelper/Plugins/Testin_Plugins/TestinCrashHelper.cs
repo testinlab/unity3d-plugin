@@ -50,9 +50,6 @@ public static class TestinCrashHelper
 	private static extern void testinSetUserInfo (string userInfo);
 	
 	[DllImport("__Internal")]
-	private static extern void testinSetChannel (string channel);
-	
-	[DllImport("__Internal")]
 	private static extern void testinReportCustomizedException (int type, string reason, string stackTrace);
 
 	private static void InitTestinAgent (string appkey, string channel)
