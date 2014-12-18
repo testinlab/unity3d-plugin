@@ -10,6 +10,10 @@
 
 ## 添加SDK到你的工程
 -----------
+添加Android NDK版本到指定目录  
+拷贝TestinAgent-ndk-v1.7.1.jar（最低1.7 NDK版本）到Unity3d-prjject/Assets/Plugins/Android/libs/下  
+拷贝TestinAgent-ndk-v1.7.1.jar（最低1.7 NDK版本）中的assets目录到Unity3d-prjject/Assets/Plugins/Android/下  
+备注：iOS直接用Unity3d导出iOS工程，在工程中直接添加SDK中的Freamwork。  
 复制以下文件到相应的目录中：   
 Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_Plugins/
 
