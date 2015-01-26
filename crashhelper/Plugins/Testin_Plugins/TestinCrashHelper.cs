@@ -118,11 +118,6 @@ public static class TestinCrashHelper
 			mTestinPlugin_ANDROID.CallStatic ("init", objActivity, appkey, channel);
 		}
 		
-		
-		mTestinPlugin_ANDROID.CallStatic ("onStart", objActivity);
-		
-		System.Console.Write ("onStart");
-		
 		isInitialized = true;
 		
 	}
