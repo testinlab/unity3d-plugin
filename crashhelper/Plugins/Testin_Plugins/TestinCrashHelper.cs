@@ -31,6 +31,11 @@ public static class TestinCrashHelper
 	{
 
 	}
+	
+	public static void setLocalDebug(bool isDebug)
+	{
+	   
+	}
 
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
 	{
@@ -129,6 +134,15 @@ public static class TestinCrashHelper
 		}
 
 		mTestinPlugin_ANDROID.CallStatic ("setUserInfo", userInfo);
+	}
+	
+	public static void setLocalDebug(bool isDebug)
+	{
+	   	if (!isInitialized) {
+			return;
+		}
+		
+		mTestinPlugin_ANDROID.CallStatic ("setLocalDebug", isDebug);
 	}
 
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
