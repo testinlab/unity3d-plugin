@@ -51,5 +51,16 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 
 示例代码如下：  
         
-        TestinCrashHelper.SetUserInfo("userInfo");
+        TestinCrashHelper.SetUserInfo("userInfo");  
+
+## 设置面包屑
+-----------
+开发者可以设置面包屑。  
+方法：  
+        
+        leaveBreadcrumb (string breadcrumb);  
+
+示例代码如下：  
+
+        TestinCrashHelper.leaveBreadcrumb("click button");  
 
