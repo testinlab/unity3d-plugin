@@ -64,3 +64,13 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 
         TestinCrashHelper.leaveBreadcrumb("click button");  
 
+## 设置本地调试
+-----------
+开发者可以开启或者关闭本地调试功能（仅限Android平台），如果开启改功能，开发者可以通过Logcat查看崩溃大师SDK所捕获的异常和Crash信息。  
+方法：  
+
+        setLocalDebug(bool isDebug);  
+
+示例代码如下：  
+
+        TestinCrashHelper.setLocalDebug(true);  
