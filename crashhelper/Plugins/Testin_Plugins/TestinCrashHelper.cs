@@ -32,6 +32,11 @@ public static class TestinCrashHelper
 
 	}
 	
+	public static void leaveBreadcrumb (string breadcrumb)
+	{
+
+	}
+	
 	public static void setLocalDebug(bool isDebug)
 	{
 	   
@@ -55,6 +60,9 @@ public static class TestinCrashHelper
 	private static extern void testinSetUserInfo (string userInfo);
 	
 	[DllImport("__Internal")]
+	private static extern void testinLeaveBreadcrumb (string breadcrumb);
+	
+	[DllImport("__Internal")]
 	private static extern void testinReportCustomizedException (int type, string reason, string stackTrace);
 
 	private static void InitTestinAgent (string appkey, string channel)
@@ -74,6 +82,14 @@ public static class TestinCrashHelper
 			return;
 		}
 		testinSetUserInfo (userInfo);
+	}
+	
+	public static void leaveBreadcrumb (string breadcrumb)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		testinLeaveBreadcrumb (breadcrumb);
 	}
 
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
@@ -134,6 +150,14 @@ public static class TestinCrashHelper
 		}
 
 		mTestinPlugin_ANDROID.CallStatic ("setUserInfo", userInfo);
+	}
+	
+	public static void leaveBreadcrumb (string breadcrumb)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		mTestinPlugin_ANDROID.CallStatic ("leaveBreadcrumb", breadcrumb);
 	}
 	
 	public static void setLocalDebug(bool isDebug)
