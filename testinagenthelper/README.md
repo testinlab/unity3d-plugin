@@ -30,9 +30,9 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 ## 处理收集的异常
 -----------
 开发者可以自己捕获异常然后进行上报。  
-方法：  
+方法定义：  
         
-        LogHandledException(Exception error);  
+       public static void LogHandledException(Exception error);  
 
 示例代码如下：  
         
@@ -45,9 +45,9 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 ## 设置用户信息
 -----------
 开发者可以设置用户信息。  
-方法：  
+方法定义：  
         
-        SetUserInfo(string userInfo);  
+        public static void SetUserInfo(string userInfo);  
 
 示例代码如下：  
         
@@ -55,21 +55,49 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 
 ## 设置面包屑
 -----------
-开发者可以设置面包屑。  
-方法：  
+开发者可以通过设置面包屑，来准确重现crash或者异常发生时用户的活动轨迹。  
+方法定义：  
         
-        leaveBreadcrumb (string breadcrumb);  
+        public static void leaveBreadcrumb (string breadcrumb);  
 
 示例代码如下：  
 
         TestinAgentHelper.leaveBreadcrumb("click button");  
 
+## 设置Transaction功能
+-----------
+开发者使用Transaction功能，来监控重要业务，例如支付，用户登录等。  
+方法定义：  
+    //Transaction功能需要有一个begin，一个结束（即end、fail、cancel）
+    //开始一个Transaction，其中bTransaction是要设置的Transaction的名称
+
+    public static void beginTransaction(string bTransaction);  
+
+    //结束一个Transaction，其中eTransaction是要设置的Transaction的名称（注：该名称需要跟beginTransaction时设置的一样）
+    public static void endTransaction(string eTransaction);  
+
+    //一个Transaction失败，其中fTransaction是要设置的Transaction的名称（注：该名称需要跟beginTransaction时设置的一样
+    public static void failTransaction(string fTransaction, string reason);  
+
+    //取消一个Transaction，其中cTransaction是要设置的Transaction的名称（注：该名称需要跟beginTransaction时设置的一样）
+    public static void cancelTransaction(string cTransaction, string reason);  
+
+示例代码如下：  
+
+    TestinAgentHelper.beginTransaction ("支付");
+
+    TestinAgentHelper.endTransaction ("支付");
+
+    TestinAgentHelper.failTransaction ("支付", "金额不足");
+
+    TestinAgentHelper.cancelTransaction ("支付", "用户主动取消");
+
 ## 设置本地调试
 -----------
 开发者可以开启或者关闭本地调试功能（仅限Android平台），如果开启改功能，开发者可以通过Logcat查看崩溃大师SDK所捕获的异常和Crash信息。  
-方法：  
+方法定义：  
 
-        setLocalDebug(bool isDebug);  
+        public static void setLocalDebug(bool isDebug);  
 
 示例代码如下：  
 

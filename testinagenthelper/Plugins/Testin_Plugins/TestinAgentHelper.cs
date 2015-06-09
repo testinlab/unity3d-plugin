@@ -43,6 +43,26 @@ public static class TestinAgentHelper
 	   
 	}
 
+	public static void beginTransaction(string bTransaction)
+	{
+
+	}
+
+	public static void endTransaction(string eTransaction)
+	{
+		
+	}
+
+	public static void failTransaction(string fTransaction, string reason)
+	{
+		
+	}
+
+	public static void cancelTransaction(string cTransaction, string reason)
+	{
+		
+	}
+
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
 	{
 
@@ -124,55 +144,53 @@ public static class TestinAgentHelper
 
 	private static void InitTestinAgent (string appkey, string channel)
 	{	
-		if(!isInitialized){
-			System.Console.Write ("InitForAndroid");
+		System.Console.Write ("InitForAndroid");
 			
-			AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
-			AndroidJavaObject objActivity = cls_UnityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
+		AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
+		AndroidJavaObject objActivity = cls_UnityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
 			
-			mTestinPlugin_ANDROID = new AndroidJavaClass (TESTINAGENT_CLASS_ANDROID);
-			if (null == mTestinPlugin_ANDROID) {
-				System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENT_CLASS_ANDROID);
-				return;
-			}
-			
-			mTestinPluginConfigBuilder_ANDROID = new AndroidJavaObject(TESTINAGENTCONFIGBUILDER_CLASS_ANDROID, objActivity);
-			
-			if(null == mTestinPluginConfigBuilder_ANDROID){
-				System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENTCONFIGBUILDER_CLASS_ANDROID);
-				return;
-			}
-
-			if(null == appkey){
-				System.Console.Write ("TestinAgent failed to initialize.  appkey is null");
-				return;
-			}
-			if(null == channel){
-				channel = TestinAgentHelperConfig.appChannel;
-			}
-			
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withAppKey", appkey);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withAppChannel", channel);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withUserInfo", TestinAgentHelperConfig.userInfo);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withDebugModel", TestinAgentHelperConfig.isDebug);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withLogCat", TestinAgentHelperConfig.lPer);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withErrorActivity", TestinAgentHelperConfig.aPer);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withCollectNDKCrash", TestinAgentHelperConfig.isNCh);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenAPM", TestinAgentHelperConfig.isAPM);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenCrash", TestinAgentHelperConfig.isCh);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenEx", TestinAgentHelperConfig.isEx);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnlyWifi", TestinAgentHelperConfig.isRWifi);
-			mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnBack", TestinAgentHelperConfig.isRBack);
-			mTestinPluginConfig_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("build");
-			if(null == mTestinPluginConfig_ANDROID){
-				System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENTCONFIGBUILDER_CLASS_ANDROID);
-				return;
-			}
-			
-			mTestinPlugin_ANDROID.CallStatic ("init", mTestinPluginConfig_ANDROID);
-			
-			isInitialized = true;
+		mTestinPlugin_ANDROID = new AndroidJavaClass (TESTINAGENT_CLASS_ANDROID);
+		if (null == mTestinPlugin_ANDROID) {
+			System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENT_CLASS_ANDROID);
+			return;
 		}
+			
+		mTestinPluginConfigBuilder_ANDROID = new AndroidJavaObject(TESTINAGENTCONFIGBUILDER_CLASS_ANDROID, objActivity);
+			
+		if(null == mTestinPluginConfigBuilder_ANDROID){
+			System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENTCONFIGBUILDER_CLASS_ANDROID);
+			return;
+		}
+
+		if(null == appkey){
+			System.Console.Write ("TestinAgent failed to initialize.  appkey is null");
+			return;
+		}
+		if(null == channel){
+			channel = TestinAgentHelperConfig.appChannel;
+		}
+			
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withAppKey", appkey);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withAppChannel", channel);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withUserInfo", TestinAgentHelperConfig.userInfo);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withDebugModel", TestinAgentHelperConfig.isDebug);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withLogCat", TestinAgentHelperConfig.lPer);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withErrorActivity", TestinAgentHelperConfig.aPer);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withCollectNDKCrash", TestinAgentHelperConfig.isNCh);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenAPM", TestinAgentHelperConfig.isAPM);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenCrash", TestinAgentHelperConfig.isCh);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenEx", TestinAgentHelperConfig.isEx);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnlyWifi", TestinAgentHelperConfig.isRWifi);
+		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnBack", TestinAgentHelperConfig.isRBack);
+		mTestinPluginConfig_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("build");
+		if(null == mTestinPluginConfig_ANDROID){
+			System.Console.Write ("TestinAgent failed to initialize.  Unable to find class " + TESTINAGENTCONFIGBUILDER_CLASS_ANDROID);
+			return;
+		}
+			
+		mTestinPlugin_ANDROID.CallStatic ("init", mTestinPluginConfig_ANDROID);
+			
+		isInitialized = true;
 	}
 
 	public static void SetUserInfo (string userInfo)
@@ -222,6 +240,38 @@ public static class TestinAgentHelper
 	{
 		mTestinPlugin_ANDROID.CallStatic ("reportCustomizedException", type, name, message);
 	}
+
+	public static void beginTransaction(string bTransaction)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		mTestinPlugin_ANDROID.CallStatic ("beginTransaction", bTransaction);
+	}
+
+	public static void endTransaction(string eTransaction)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		mTestinPlugin_ANDROID.CallStatic ("endTransaction", eTransaction);
+	}
+	
+	public static void failTransaction(string fTransaction, string reason)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		mTestinPlugin_ANDROID.CallStatic ("failTransaction", fTransaction, reason);
+	}
+	
+	public static void cancelTransaction(string cTransaction, string reason)
+	{
+		if (!isInitialized) {
+			return;
+		}
+		mTestinPlugin_ANDROID.CallStatic ("cancelTransaction", cTransaction, reason);
+	}
 	
 	#endif
 
@@ -234,23 +284,7 @@ public static class TestinAgentHelper
 
 	public static void Init()
 	{
-		if (isInitialized) {
-			System.Console.Write ("TestinAgent is already initialized.");
-			return;
-		}
-
-		if (_ShowDebug) 
-		{
-			System.Console.Write ("Initializing TestinAgent with AppKey ");
-		}
-
-		InitTestinAgent (TestinAgentHelperConfig.appKey, TestinAgentHelperConfig.appChannel);
-		
-		if (isInitialized) {
-			System.AppDomain.CurrentDomain.UnhandledException += _OnUnresolvedExceptionHandler;
-			Application.RegisterLogCallback (_OnDebugLogCallbackHandler);
-		}
-
+		Init (TestinAgentHelperConfig.appKey, TestinAgentHelperConfig.appChannel);
 	}
 
 	public static void Init (string appkey)
