@@ -43,26 +43,6 @@ public static class TestinAgentHelper
 	   
 	}
 
-	public static void beginTransaction(string bTransaction)
-	{
-
-	}
-
-	public static void endTransaction(string eTransaction)
-	{
-		
-	}
-
-	public static void failTransaction(string fTransaction, string reason)
-	{
-		
-	}
-
-	public static void cancelTransaction(string cTransaction, string reason)
-	{
-		
-	}
-
 	private static void _OnDebugLogCallbackHandler (string name, string stack, LogType type)
 	{
 
@@ -241,37 +221,6 @@ public static class TestinAgentHelper
 		mTestinPlugin_ANDROID.CallStatic ("reportCustomizedException", type, name, message);
 	}
 
-	public static void beginTransaction(string bTransaction)
-	{
-		if (!isInitialized) {
-			return;
-		}
-		mTestinPlugin_ANDROID.CallStatic ("beginTransaction", bTransaction);
-	}
-
-	public static void endTransaction(string eTransaction)
-	{
-		if (!isInitialized) {
-			return;
-		}
-		mTestinPlugin_ANDROID.CallStatic ("endTransaction", eTransaction);
-	}
-	
-	public static void failTransaction(string fTransaction, string reason)
-	{
-		if (!isInitialized) {
-			return;
-		}
-		mTestinPlugin_ANDROID.CallStatic ("failTransaction", fTransaction, reason);
-	}
-	
-	public static void cancelTransaction(string cTransaction, string reason)
-	{
-		if (!isInitialized) {
-			return;
-		}
-		mTestinPlugin_ANDROID.CallStatic ("cancelTransaction", cTransaction, reason);
-	}
 	
 	#endif
 

@@ -3,9 +3,10 @@ using System.Collections;
 
 public class TestinAgentHelperConfig {
 	
-	public const string appKey = "a0d49052a0853862a7c18a77d2a39838";
-	public const string appChannel = "Test";
+	public const string appKey = "408e2b6077a2f585d63deebad824f62e";
+	public const string appChannel = "TestinUnityiOS";
 	public const string userInfo = "NA";
+	//config for android
 	public const bool isDebug = true;
 	public const bool lPer = true;/* collect log or not */
 	public const bool aPer = true;/* collect activity or not */
