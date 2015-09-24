@@ -39,7 +39,7 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
         try {  
                 throw new System.Exception();  
         } catch (System.Exception error) {  
-                TestinCrashHelper.LogHandledException(error);  
+                TestinAgentHelper.LogHandledException(error);  
         }
 		
 ## 设置用户信息
@@ -51,7 +51,7 @@ Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_P
 
 示例代码如下：  
         
-        TestinCrashHelper.SetUserInfo("userInfo");  
+        TestinAgentHelper.SetUserInfo("userInfo");  
 
 ## 设置面包屑
 -----------
