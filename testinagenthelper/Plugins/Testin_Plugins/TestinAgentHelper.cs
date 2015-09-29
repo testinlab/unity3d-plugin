@@ -157,9 +157,7 @@ public static class TestinAgentHelper
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withLogCat", TestinAgentHelperConfig.lPer);
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withErrorActivity", TestinAgentHelperConfig.aPer);
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withCollectNDKCrash", TestinAgentHelperConfig.isNCh);
-		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenAPM", TestinAgentHelperConfig.isAPM);
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenCrash", TestinAgentHelperConfig.isCh);
-		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withOpenEx", TestinAgentHelperConfig.isEx);
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnlyWifi", TestinAgentHelperConfig.isRWifi);
 		mTestinPluginConfigBuilder_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("withReportOnBack", TestinAgentHelperConfig.isRBack);
 		mTestinPluginConfig_ANDROID = mTestinPluginConfigBuilder_ANDROID.Call<AndroidJavaObject>("build");
