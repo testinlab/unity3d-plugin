@@ -11,11 +11,8 @@ TestinAgent-SDK插件for Unity3D引擎，是C＃代码到Native代码（Java/Obj
 ## 添加SDK到你的工程
 -----------
 添加Android NDK版本到指定目录  
-拷贝testinagent.jar（最低2.0.0版本）到Unity3d-prjject/Assets/Plugins/Android/libs/下  
-拷贝testinagent.jar（最低2.0.0版本）中的assets目录到Unity3d-prjject/Assets/Plugins/Android/下  
-备注：iOS直接用Unity3d导出iOS工程，在工程中直接添加SDK中的Freamwork。  
-复制以下文件到相应的目录中：   
-Unity3D-plugin/crashhelper/Plugins/Testin_Plugins/* —> Assets/Plugins/Testin_Plugins/
+拷贝Testin-unity-plugin/Plugins目录下内容到Unity3d-prjject/Assets/Plugins/下
+备注：iOS应用直接用Unity3d导出iOS工程，在工程中直接添加SDK中的Freamwork。  
 
 ## 初化始TestinAgent
 -----------
